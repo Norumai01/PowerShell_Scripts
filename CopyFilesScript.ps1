@@ -34,7 +34,7 @@ function CheckSourceFile {
     )
     # Check if source folder exists
     if (-not (Test-Path -Path $SrcFile)) {
-        Write-Host "Source file does not exist: " -NoNewline
+        Write-Host "Source file does not exist: " -NoNewline 
         Write-Host "$SrcFile" -ForegroundColor Blue -NoNewline
         Write-Host "."
         continue
@@ -47,7 +47,7 @@ function CheckDestFolder {
     )
     # Check if destination folder exists    
     if (-not (Test-Path -Path $DestFolder)) {
-        New-Item -ItemType Directory -Path $DestFolder -Force
+        New-Item -ItemType Directory -Path $DestFolder -Force | Out-Null
         Write-Host "Created destination folder: " -NoNewline
         Write-Host "$DestFolder" -ForegroundColor Blue -NoNewline
         Write-Host "."
@@ -66,8 +66,8 @@ function CopyPaste {
 		# Check if any subfolder needs to be created.
 		CheckDestFolder -DestFolder $DestFolderPath
 
-        Copy-Item -Path $SrcFile\* -Destination $DestFolderPath -Recurse -Force
-        Write-Host "Copied contents of folder " -NoNewline
+        Copy-Item -Path $SrcFile\* -Destination $DestFolderPath -Recurse -Force | Out-Null
+        Write-Host "Copied contents of folder " -NoNewline 
         Write-Host "$SrcFile " -ForegroundColor Blue -NoNewline
         Write-Host "to " -NoNewline
         Write-Host "$DestFolderPath" -ForegroundColor Blue -NoNewline
@@ -75,7 +75,7 @@ function CopyPaste {
     } else {
         # Source is a file.
         $destFilePath = Join-Path -Path $DestFolder -ChildPath (Get-Item $SrcFile).Name
-        Copy-Item -Path $SrcFile -Destination $destFilePath -Force
+        Copy-Item -Path $SrcFile -Destination $destFilePath -Force | Out-Null
         Write-Host "Copied file " -NoNewline   
         Write-Host "$SrcFile " -ForegroundColor Blue -NoNewline
         Write-Host "to " -NoNewline
