@@ -3,7 +3,7 @@ Import-Module Pester
 # Set up test data (create temporary test files and folders)
 BeforeAll {
     # Linking the script file
-    . "..\MoveFilesScript.ps1"
+    . "$PSScriptRoot\MoveFilesScript.ps1"
 
     $testSourceFolder = Join-Path -Path $PSScriptRoot -ChildPath "TestSource"
     $testDestFolder = Join-Path -Path $PSScriptRoot -ChildPath "TestDestination"
