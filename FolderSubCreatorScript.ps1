@@ -8,7 +8,7 @@ function CreateDirectory {
 	)
 	# If folder doesn't exist, create it.
 	if (-not (Test-Path -Path $DirPath)) {
-		New-Item -ItemType Directory -Path $DirPath -Force
+		New-Item -ItemType Directory -Path $DirPath -Force | Out-Null
 		Write-Host "Created directory: $DirPath"
 	}
 	else {
